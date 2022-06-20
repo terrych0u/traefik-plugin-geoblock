@@ -11,7 +11,7 @@ import (
 
 const (
 	pluginName = "geoblock"
-	dbFilePath = "./IP2LOCATION-LITE-DB1.IPV6.BIN"
+	dbFilePath = "./IP2LOCATION-LITE-DB1.*.BIN"
 )
 
 type noopHandler struct{}

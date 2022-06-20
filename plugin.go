@@ -137,7 +137,7 @@ func (p *Plugin) GetRemoteIPs(req *http.Request) (ips []string) {
 		ips = append(ips, ip)
 	}
 
-	return
+	return ips
 }
 
 var ErrNotAllowed = errors.New("not allowed")

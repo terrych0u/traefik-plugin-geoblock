@@ -12,7 +12,9 @@ import (
 	"math/big"
 	"net"
 	"os"
+	"path/filepath"
 	"strconv"
+	"strings"
 )
 
 type DBReader interface {
@@ -330,7 +332,15 @@ func fatal(db *DB, err error) (*DB, error) {
 // OpenDB takes the path to the IP2Location BIN database file. It will read all the metadata required to
 // be able to extract the embedded geolocation data, and return the underlining DB object.
 func OpenDB(dbpath string) (*DB, error) {
-	f, err := os.Open(dbpath)
+	matches, err := filepath.Glob(dbpath)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	dbWildcardPath := strings.Join(matches, "")
+
+	f, err := os.Open(dbWildcardPath)
 	if err != nil {
 		return nil, err
 	}
